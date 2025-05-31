@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HotelMaui.Views.ContratarHospedagem"
+             Title="ContrarHospedagem"
+             NavigationPage.HasNavigationBar="False">
+    <VerticalStackLayout VerticalOptions="CenterAndExpand" Padding="10">
+        <Label Text="Cálculo da Diária" TextColor="{StaticResource Primary}" FontSize="50"/>
+        <Frame Padding="10">
+            <VerticalStackLayout>
+                <Grid RowDefinitions="Auto,Auto"
+                      ColumnDefinitions="*,*,2*">
+                    
+                    <!--Adultos-->
+                    <Label Grid.Row="0" Grid.Column="0"
+                           Text="Adultos:"/>
+                    <Label Grid.Row="0" Grid.Column="1"
+                           Text="{Binding Value}"
+                           TextColor="{StaticResource Primary}"
+                           BindingContext="{x:Reference stpAdultos}"/>
+                    <Stepper x:Name="stpAdultos" Grid.Row="0" Grid.Column="2"
+                             Minimum="0" Maximum="10" Increment="1"/>
+                    
+                    <!--Crianças-->
+                    <Label Grid.Row="1" Grid.Column="0"
+                           Text="Crianças:"/>
+                    <Label Grid.Row="1" Grid.Column="1"
+                           Text="{Binding Value}"
+                           TextColor="{StaticResource Primary}"
+                           BindingContext="{x:Reference stpCrianca}"/>
+                    <Stepper x:Name="stpCrianca" Grid.Row="1" Grid.Column="2"
+                             Minimum="0" Maximum="10" Increment="1"/>
+                </Grid>
+                <Frame>
+                    <VerticalStackLayout>
+                        <Label Text="Escolha sua Suíte:" TextColor="{StaticResource Primary}"/>
+                        <Picker x:Name="pckQuarto" Title="Selecione uma acomodação"
+                                ItemDisplayBinding="{Binding Descricao}"/>
+                    </VerticalStackLayout>
+                </Frame>
+                <Frame>
+                    <VerticalStackLayout>
+                        <Label Text="Período da Estadia" TextColor="{StaticResource Primary}"/>
+
+                        <HorizontalStackLayout>
+                            <Label Text="Check-in:"/>
+                            <DatePicker x:Name="dtcheckIn" Format="dd/MM/yyyy"
+                                        DateSelected="dtcheckIn_DateSelected"/>
+                        </HorizontalStackLayout>
+
+                        <HorizontalStackLayout>
+                            <Label Text="Check-out:"/>
+                            <DatePicker x:Name="dtcheckOut" Format="dd/MM/yyyy"/>
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </Frame>
+                <Button Text="Avançar" HorizontalOptions="Center" Clicked="Button_Clicked"/>
+            </VerticalStackLayout>
+        </Frame>
+    </VerticalStackLayout>
+</ContentPage>
